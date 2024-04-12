@@ -1,0 +1,1879 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="sed_projeto1">
+<B:Comment>
+</B:Comment>
+<EventDeclList>
+<EventDecl Kind="CONTROLLABLE" Name="sem1_gy"/>
+<EventDecl Kind="CONTROLLABLE" Name="sem1_yr"/>
+<EventDecl Kind="CONTROLLABLE" Name="sem1_rg"/>
+<EventDecl Kind="CONTROLLABLE" Name="sem2_gy"/>
+<EventDecl Kind="CONTROLLABLE" Name="sem2_yr"/>
+<EventDecl Kind="CONTROLLABLE" Name="sem2_rg"/>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="ped1_push"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="ped2_push"/>
+<EventDecl Kind="CONTROLLABLE" Name="open_sem1"/>
+<EventDecl Kind="CONTROLLABLE" Name="close_sem1"/>
+<EventDecl Kind="CONTROLLABLE" Name="close_sem2"/>
+<EventDecl Kind="CONTROLLABLE" Name="open_sem2"/>
+<EventDecl Kind="CONTROLLABLE" Name="open_ped1"/>
+<EventDecl Kind="CONTROLLABLE" Name="open_ped2"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="PEDESTRE_2">
+<Graph>
+<NodeList>
+<SimpleNode Name="Close_2">
+<PointGeometry>
+<Point X="-96" Y="-384"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="10" Y="-15"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Initial="true" Name="Open_2">
+<PointGeometry>
+<Point X="-384" Y="-384"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-20" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-48" Y="-21"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="wait2_push">
+<PointGeometry>
+<Point X="-240" Y="-320"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-20" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="wait2_push" Target="Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="-54" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="-240" Y="-320"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="-326" Y="-340"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==" Text="sem2_button == 1">
+<SimpleIdentifier Name="sem2_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="-=">
+<SimpleIdentifier Name="sem2_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-54" Y="26"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Open_2" Target="Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="-37" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-239" Y="-442"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="+=">
+<SimpleIdentifier Name="ped2"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="-61"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Close_2" Target="wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-16" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-156" Y="-335"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Close_2" Target="Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="-29" Y="6"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped2"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="-=">
+<SimpleIdentifier Name="sem2_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-34" Y="-37"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="PEDESTRE_1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Close_1">
+<PointGeometry>
+<Point X="32" Y="-176"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-32" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-30" Y="8"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Open_1">
+<PointGeometry>
+<Point X="352" Y="-176"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-9" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="wait1_push">
+<PointGeometry>
+<Point X="192" Y="-176"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-20" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="wait1_push" Target="Open_1">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-45" Y="-21"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="192" Y="-176"/>
+</StartPointGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="sem1_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<LabelGeometry Anchor="NW">
+<Point X="-58" Y="-35"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Open_1" Target="Close_1">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-27" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="190" Y="-133"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==" Text="count == 0">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="-=">
+<SimpleIdentifier Name="ped1"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+<BinaryExpression Operator="-=">
+<SimpleIdentifier Name="sem1_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-26" Y="22"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Close_1" Target="wait1_push">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-31" Y="-30"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Close_1" Target="Open_1">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-36" Y="-29"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="194" Y="-238"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped1"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<LabelGeometry Anchor="NW">
+<Point X="-29" Y="-48"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="SEMAFARO_1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="G">
+<PointGeometry>
+<Point X="160" Y="144"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-19" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R">
+<PointGeometry>
+<Point X="480" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y">
+<PointGeometry>
+<Point X="320" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="G" Target="Y">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="-33" Y="-42"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Y" Target="R">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="+=" Text="count += 1">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+<BinaryExpression Operator="+=">
+<SimpleIdentifier Name="sem1_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+<BinaryExpression Operator="+=">
+<SimpleIdentifier Name="ped1"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-28" Y="-73"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="R" Target="G">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-1"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="323" Y="188"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="&amp;" Text="count == 0&amp; ped1==0">
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped1"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</BinaryExpression>
+</Guards>
+<LabelGeometry Anchor="NW">
+<Point X="-48" Y="19"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Y" Target="Y">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-31" Y="-27"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="319" Y="105"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="SEMAFARO_2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="R">
+<PointGeometry>
+<Point X="176" Y="176"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y">
+<PointGeometry>
+<Point X="320" Y="176"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="G">
+<PointGeometry>
+<Point X="464" Y="176"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="R" Target="G">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="7"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="325" Y="223"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="&amp;" Text="count == 1 &amp; ped2 ==1">
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped2"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</BinaryExpression>
+</Guards>
+<LabelGeometry Anchor="NW">
+<Point X="-54" Y="23"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="G" Target="Y">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_gy"/>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-27" Y="-46"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Y" Target="R">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="-30" Y="-27"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="-=" Text="count -= 1">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+<BinaryExpression Operator="+=" Text="sem2_button += 1">
+<SimpleIdentifier Name="sem2_button"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+<BinaryExpression Operator="-=">
+<SimpleIdentifier Name="ped2"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-64" Y="-73"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Y" Target="Y">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-36" Y="-25"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="322" Y="129"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<VariableComponent Name="count">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==" Text="count == 0">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+<VariableMarking>
+<SimpleIdentifier Name=":accepting"/>
+<BinaryExpression Operator="==" Text="count == 0">
+<SimpleIdentifier Name="count"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableMarking>
+</VariableComponent>
+<VariableComponent Name="sem1_button">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="sem1_button"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+<VariableMarking>
+<SimpleIdentifier Name=":accepting"/>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="sem1_button"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableMarking>
+</VariableComponent>
+<VariableComponent Name="sem2_button">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="sem2_button"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+<VariableMarking>
+<SimpleIdentifier Name=":accepting"/>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="sem2_button"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableMarking>
+</VariableComponent>
+<VariableComponent Name="ped1">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped1"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+<VariableMarking>
+<SimpleIdentifier Name=":accepting"/>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped1"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableMarking>
+</VariableComponent>
+<VariableComponent Name="ped2">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped2"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+<VariableMarking>
+<SimpleIdentifier Name=":accepting"/>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="ped2"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableMarking>
+</VariableComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(SEMAFARO_1||SEMAFARO_2)">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="G.R">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-192" Y="160"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="-1"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-15" Y="-23"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.G">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="304" Y="160"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="-24"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.R">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="48" Y="160"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="-23"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.Y">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="176" Y="224"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y.R">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-64" Y="224"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="G.R" Target="Y.R">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="-52" Y="6"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-141" Y="208"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G" Target="R.Y">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<SimpleIdentifier Name="sem2_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="-14" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="251" Y="207"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R" Target="G.R">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="R.R" Target="R.G">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="R.Y" Target="R.R">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="-33" Y="6"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="107" Y="206"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y" Target="R.Y">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-10" Y="6"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="154" Y="262"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R" Target="R.R">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="-4" Y="3"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-2" Y="205"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R" Target="Y.R">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-31" Y="5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-100" Y="257"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(PEDESTRE_1||PEDESTRE_2)">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Close_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-592" Y="-32"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-21" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="1" Y="14"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Open_1.Close_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-592" Y="-288"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Open_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-592" Y="-144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Open_1.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-368" Y="-288"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="wait1_push.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-208" Y="-144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="wait1_push.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="-208" Y="-288"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Close_1.Open_2" Target="Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-46" Y="-51"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-654" Y="-81"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Close_1.Open_2" Target="wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Open_1.Close_2" Target="Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="1" Y="-5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-660" Y="-216"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Open_1.Close_2" Target="Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="-1" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Open_1.Open_2" Target="Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="9" Y="-11"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Open_1.Open_2" Target="Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Open_1.wait2_push" Target="Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="-70" Y="-5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="-460" Y="-232"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="wait1_push.Open_2" Target="Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="wait1_push.wait2_push" Target="Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-66" Y="-21"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="wait1_push.wait2_push" Target="wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(sup(SEMAFARO_1||SEMAFARO_2)||sup(PEDESTRE_1||PEDESTRE_2))">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="G.R.Close_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="142" Y="154"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="G.R.Open_1.Close_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="105" Y="358"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="G.R.Open_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="213" Y="207"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="G.R.Open_1.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="390" Y="220"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="G.R.wait1_push.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="266" Y="59"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.G.Close_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="299" Y="426"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.G.Open_1.Close_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="381" Y="546"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.G.Open_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="419" Y="421"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.G.Open_1.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="535" Y="462"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.G.wait1_push.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="509" Y="213"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.R.Close_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="200" Y="320"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.R.Open_1.Close_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="201" Y="464"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.R.Open_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="291" Y="329"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.R.Open_1.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="453" Y="353"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.R.wait1_push.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="370" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.Y.Close_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="270" Y="469"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.Y.Open_1.Close_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="343" Y="570"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.Y.Open_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="379" Y="459"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.Y.Open_1.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="459" Y="521"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="R.Y.wait1_push.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="499" Y="259"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y.R.Close_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="98" Y="177"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y.R.Open_1.Close_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="58" Y="369"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y.R.Open_1.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="156" Y="234"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y.R.Open_1.wait2_push">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="349" Y="243"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Y.R.wait1_push.Open_2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="190" Y="100"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="G.R.Close_1.Open_2" Target="G.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="166" Y="176"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Close_1.Open_2" Target="Y.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="106" Y="153"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Close_1.Open_2" Target="Y.R.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="157" Y="111"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.Close_2" Target="G.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="163" Y="286"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.Close_2" Target="Y.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="69" Y="368"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.Open_2" Target="G.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="182" Y="163"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.Open_2" Target="G.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="144" Y="278"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.Open_2" Target="Y.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="178" Y="215"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.wait2_push" Target="G.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="305" Y="200"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.Open_1.wait2_push" Target="Y.R.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="375" Y="225"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.wait1_push.Open_2" Target="G.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="241" Y="122"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="G.R.wait1_push.Open_2" Target="Y.R.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="225" Y="61"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Close_1.Open_2" Target="R.G.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="359" Y="435"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Close_1.Open_2" Target="R.Y.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="282" Y="455"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.Close_2" Target="R.G.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="421" Y="499"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.Close_2" Target="R.Y.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="366" Y="576"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.Close_2" Target="R.Y.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="430" Y="550"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.Open_2" Target="R.G.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="368" Y="416"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.Open_2" Target="R.G.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="405" Y="488"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.Open_2" Target="R.Y.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="406" Y="447"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.wait2_push" Target="R.G.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="490" Y="444"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.Open_1.wait2_push" Target="R.Y.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="513" Y="503"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.wait1_push.Open_2" Target="R.G.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="462" Y="306"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.G.wait1_push.Open_2" Target="R.Y.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_gy"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="520" Y="231"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Close_1.Open_2" Target="G.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="R.R.Close_1.Open_2" Target="R.G.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="243" Y="377"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Close_1.Open_2" Target="R.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="241" Y="337"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Close_2" Target="G.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="139" Y="421"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Close_2" Target="R.G.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="284" Y="523"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Close_2" Target="R.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="247" Y="407"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Open_2" Target="G.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="254" Y="263"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Open_2" Target="R.G.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="362" Y="374"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Open_2" Target="R.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="244" Y="315"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.Open_2" Target="R.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="228" Y="396"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.wait2_push" Target="G.R.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="435" Y="281"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.wait2_push" Target="R.G.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="511" Y="408"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.Open_1.wait2_push" Target="R.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="380" Y="339"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.wait1_push.Open_2" Target="G.R.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="324" Y="84"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.wait1_push.Open_2" Target="R.G.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_rg"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="452" Y="161"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.R.wait1_push.Open_2" Target="R.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="327" Y="225"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Close_1.Open_2" Target="R.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="225" Y="404"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Close_1.Open_2" Target="R.Y.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="325" Y="468"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.Close_2" Target="R.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="261" Y="538"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.Close_2" Target="R.Y.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="368" Y="529"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.Close_2" Target="R.Y.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="ped2_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="410" Y="569"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.Open_2" Target="R.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="R.Y.Open_1.Open_2" Target="R.Y.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="321" Y="489"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.Open_2" Target="R.Y.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="348" Y="525"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.wait2_push" Target="R.R.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="474" Y="444"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.Open_1.wait2_push" Target="R.Y.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="425" Y="501"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.wait1_push.Open_2" Target="R.R.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem2_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="447" Y="188"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="R.Y.wait1_push.Open_2" Target="R.Y.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="436" Y="354"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Close_1.Open_2" Target="R.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="129" Y="250"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Close_1.Open_2" Target="Y.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Y.R.Close_1.Open_2" Target="Y.R.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="ped1_push"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="127" Y="120"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.Close_2" Target="R.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="111" Y="429"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.Close_2" Target="Y.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_ped2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="79" Y="292"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.Open_2" Target="R.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="218" Y="280"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.Open_2" Target="Y.R.Close_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="103" Y="211"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.Open_2" Target="Y.R.Open_1.Close_2">
+<LabelBlock>
+<SimpleIdentifier Name="close_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="95" Y="306"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.wait2_push" Target="R.R.Open_1.wait2_push">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="412" Y="294"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.Open_1.wait2_push" Target="Y.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="Y.R.wait1_push.Open_2" Target="R.R.wait1_push.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="sem1_yr"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="281" Y="104"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Y.R.wait1_push.Open_2" Target="Y.R.Open_1.Open_2">
+<LabelBlock>
+<SimpleIdentifier Name="open_sem1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="165" Y="157"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>
